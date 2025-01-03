@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Admin Dashboard - Cash Tracker</title>
+        <title>Admin Dashboard - Fuel Expense App</title>
         <meta name="description" content="Admin Dashboard - Cash Tracker" />
       </Helmet>
       <div>

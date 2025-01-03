@@ -16,13 +16,14 @@ const LoginPage = () => {
     e.preventDefault();
 
     // Initialize Realm app
-    const app = new Realm.App({ id: "application-0-cocosmt" });
+    const app = new Realm.App({ id: "application-0-vzvlkcx" });
+    // application-0-cocosmt
     const credentials = Realm.Credentials.anonymous();
 
     try {
       const user = await app.logIn(credentials);
       const mongo = user.mongoClient("mongodb-atlas");
-      const collection = mongo.db("cashtracker").collection("admin");
+      const collection = mongo.db("fuelapp").collection("admin");
 
       // Fetch user data from the database
       const userData = await collection.findOne({ username: userID });
@@ -31,7 +32,7 @@ const LoginPage = () => {
       if (userData && userData.password === password) {
         // Fetch the token from the database
         const tokenData = await mongo
-          .db("cashtracker")
+          .db("fuelapp")
           .collection("tokens")
           .findOne({});
         const fakeToken = tokenData.admin; // Assuming the token is stored in a collection named 'tokens'
@@ -67,11 +68,16 @@ const LoginPage = () => {
               Admin Login
             </h1>
           </div>
-          <div className="col-md-7 d-flex align-items-center justify-content-center">
+          <div
+            className="col-md-7 d-flex align-items-center justify-content-center"
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-aos-once="true"
+          >
             {/* Login form */}
             <form
               onSubmit={handleLogin}
-              className="w-100 shadow-lg p-5 rounded"
+              className="w-100 shadow-lg p-4 rounded"
               style={{ backgroundColor: "#14254C" }}
             >
               <div
@@ -127,6 +133,26 @@ const LoginPage = () => {
               >
                 <i className="fa-solid fa-lock"></i> Login
               </button>
+              <div className="mt-3 text-center">
+                <p
+                  className="text-white"
+                  data-aos="fade-up"
+                  data-aos-delay="1000"
+                  data-aos-once="true"
+                >
+                  Client Login?{" "}
+                  <span>
+                    <a
+                      href="/"
+                      className="text-success"
+                      style={{ textDecoration: "underline", cursor: "pointer" }}
+                    >
+                      {" "}
+                      Click Here
+                    </a>
+                  </span>
+                </p>
+              </div>
             </form>
           </div>
         </div>
